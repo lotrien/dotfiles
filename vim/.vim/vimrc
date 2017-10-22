@@ -165,7 +165,6 @@ endfor
 "
 
 nnoremap <leader>1 :NERDTreeToggle<CR>
-nnoremap <leader>2 :TagbarToggle<CR>
 nnoremap <leader>3 :set spell!<CR>
 nnoremap <leader>4 :GundoToggle<CR>
 nnoremap <leader>g :Grepper<CR>
