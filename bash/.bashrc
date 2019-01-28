@@ -62,6 +62,9 @@ if [ `uname` == "Linux" ]; then
   alias pbpaste='xclip -selection clipboard -o'
 fi
 
+if [ `uname` == "Darwin" ]; then
+  alias grep='grep --color=auto'
+fi
 
 #
 # EXPORT DEFINITIONS
@@ -78,7 +81,7 @@ if [ `uname` == "Darwin" ]; then
   # By default, pip on OS X installs binaries here. So we need to add
   # those paths to PATH in order to make available installed scripts
   # from shell.
-  export PATH=~/Library/Python/2.7/bin:~/Library/Python/3.6/bin:$PATH
+  export PATH=~/Library/Python/2.7/bin:~/Library/Python/3.7/bin:$PATH
 
   # Homebrew's sbin path is unusual for *nix systems so it got to be
   # added explicitly.
@@ -94,7 +97,6 @@ export CXX=clang++                  # use clang as default C++ compiler
 export PYTHONDONTWRITEBYTECODE=1    # do not produce .pyc/.pyo files
 export CLICOLOR=1                   # turn on colors for some BSD tools
 export GPG_TTY=`tty`                # setup tty for gpg2's pinetry
-
 
 #
 # SETUP BASH PROMPT WITH BLACKJACK AND HOOKERS
