@@ -1,4 +1,5 @@
+.DS_Store
+fish/.config/fish/fish_variables
 vim/.vim/tmp/
 vim/.vim/plugins/
 vim/.vim/autoload/plug.vim
-.DS_Store

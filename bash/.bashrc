@@ -78,67 +78,15 @@ if [ `uname` == "Darwin" ]; then
   export LC_ALL=en_US.UTF-8
   export LANG=en_US.UTF-8
 
-  # By default, pip on OS X installs binaries here. So we need to add
-  # those paths to PATH in order to make available installed scripts
-  # from shell.
-  export PATH=~/Library/Python/2.7/bin:~/Library/Python/3.7/bin:$PATH
-
   # Homebrew's sbin path is unusual for *nix systems so it got to be
   # added explicitly.
   export PATH=/usr/local/sbin:/usr/local/bin:$PATH
 fi
 
-export PATH=~/.local/bin:$PATH      # scripts installed by pip (python)
-export PATH=~/.cargo/bin:$PATH      # binaries installed by cargo (rust)
-
 export EDITOR=vim                   # prefer vim as default editor
-export CC=clang                     # use clang as default C compiler
-export CXX=clang++                  # use clang as default C++ compiler
 export PYTHONDONTWRITEBYTECODE=1    # do not produce .pyc/.pyo files
 export CLICOLOR=1                   # turn on colors for some BSD tools
-export GPG_TTY=`tty`                # setup tty for gpg2's pinetry
 
-#
-# SETUP BASH PROMPT WITH BLACKJACK AND HOOKERS
-#
-
-function __setup_prompt {
-  # ANSI CODES - SEPARATE MULTIPLE VALUES WITH ;
-  #
-  #  0  reset          4  underline
-  #  1  bold           7  inverse
-  #
-  # FG  BG  COLOR     FG  BG  COLOR
-  # 30  40  black     34  44  blue
-  # 31  41  red       35  45  magenta
-  # 32  42  green     36  46  cyan
-  # 33  43  yellow    37  47  white
-
-  # retrieve vcs information if available
-  if which vcstatus &>/dev/null; then
-    local vcs=$(vcstatus -q -f "\[\e[0;34m\]%n:\[\e[0m\]%b\[\e[34m\]%m\[\e[0m\]")
-  fi
-
-  # retrieve virtualenv information if available
-  if [ ! -z $VIRTUAL_ENV ]; then
-    local venv=$(basename `dirname "$VIRTUAL_ENV"`)
-
-    # special case: show tox venvs as 'tox/venv' instead of '.tox'
-    if [ $venv == '.tox' ]; then
-      local venv="tox/`basename $VIRTUAL_ENV`"
-    fi
-
-    local venv="\[\e[1;35m\]venv:\[\e[0m\]$venv"
-  fi
-
-  local STATUSLINE=(
-    '\[\e[0;33m\]@\u\[\e[0m\]'          # username, bold & yellow
-    '\[\e[0;32m\]\w\[\e[0m\]'           # curr dir, bold & green
-    $vcs                                # vcs:branch(+dirty), bold & blue
-    $venv                               # active virtualenv, bold & maroon
-  )
-
-  PS1="\n${STATUSLINE[*]}"              # show status line on first line
-  PS1+='\n\[\e[0;34m\]$\[\e[0m\] '      # show prompt on second one
-}
-PROMPT_COMMAND="${PROMPT_COMMAND:-:}; __setup_prompt"
+if which starship &>/dev/null; then
+  eval "$(starship init bash)"
+fi

@@ -1,5 +1,4 @@
 theme = Nord
-#font-family = Ranok Mono
 font-feature = -calt, -liga, -dlig
 copy-on-select = true
 clipboard-paste-protection = false
