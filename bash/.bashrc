@@ -1,8 +1,4 @@
 #
-# Based on .bashrc of Ihor Kalnytskyi <ihor@kalnytskyi.com>.
-#
-
-#
 # GENERAL SETTINGS
 #
 
